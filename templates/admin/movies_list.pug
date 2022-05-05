@@ -1,0 +1,14 @@
+extends ../layout.pug
+
+block content   
+    ul.container
+        each movie in movies
+            div.border-bottom.border-light.py-3
+                div
+                    h5.text-light #{movie.title}
+                    p.text-light #{movie.year}
+                    p.text-light #{movie.genre}
+                    p.text-light #{movie.actors}
+                div.d-flex.flex-row
+                    img(src=movie.affiche).me-md-3
+                    p.text-light #{movie.synopsis} 

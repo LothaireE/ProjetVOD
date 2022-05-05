@@ -7,12 +7,18 @@ block content
         .alert.alert-danger(role="alert")  #{error}
         
     form(method="post")
+        input(type="hidden" name="id_tmdb" id="id_tmdb")
         .form-group
             label(for="title") Titre
-            input.form-control(type="text" id="title" name="title" value=title placeholder="Titre du film")
+            input.form-control.basicAutoComplete(type="text" id="title" name="title" autocomplete="off" value=title placeholder="Titre du film")
+            div#parentMoviesList
+                ul#moviesList
+        .form-group
+            label(for="affiche") Affiche
+            input.form-control(type="text" id="affiche" name="affiche" value=actors placeholder="Url de l'affiche")
         .form-group
             label(for="year") Année de production
-            input.form-control(type="text" id="year" name="year" value=year pattern="/^(19|20)[0-9]{2}+$/" placeholder="Année de production")
+            input.form-control(type="number" id="year" name="year" min="1900" max=new Date().getFullYear()+1 value=year placeholder="Année de production")
         .form-group
             label(for="genre") Genre
             input.form-control(type="text" id="genre" name="genre" value=genre placeholder="Genre (action, science-fiction, comédie, ...)")
@@ -25,3 +31,12 @@ block content
  
         .form-group
             button.btn.btn-primary(type="submit") Ajouter
+ 
+    template#movieChoice
+        li
+            img(src="")
+            span.title
+ 
+ 
+block javascript
+    script(src="/javascript/movie.js")

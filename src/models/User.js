@@ -17,16 +17,11 @@ module.exports = class User {
   }
 
   add(lastname, firstname, email, password) {
-    let bcrypt = require("bcryptjs");
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(password, salt, function (err, hash) {
-        return UserMongo.create({
-          lastname,
-          firstname,
-          email,
-          password: hash,
-        });
-      });
+    return UserMongo.create({
+      lastname,
+      firstname,
+      email,
+      password: hash,
     });
   }
 };

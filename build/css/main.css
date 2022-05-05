@@ -1,0 +1,24 @@
+body {
+  color: white;
+}
+
+#parentMoviesList {
+  overflow: auto;
+  max-height: 500px;
+}
+
+#moviesList {
+  list-style: none;
+  background-color: white;
+  position: absolute;
+  height: 400px;
+  width: 100%;
+  overflow: auto;
+  display: none;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+}
+
+#moviesList li {
+  padding: 5px;
+}

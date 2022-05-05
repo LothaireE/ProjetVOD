@@ -1,8 +1,3 @@
-// module.exports = (app) => {
-//   app.get("/", (req, res) => {
-//     res.send("Hello World");
-//   });
-// };
 module.exports = (app) => {
   app.get("/", (req, res) => {
     let Home = require("../src/controllers/Home.js");
@@ -38,5 +33,15 @@ module.exports = (app) => {
     let AdminMovie = require("../src/controllers/AdminMovie.js");
     let Controller = new AdminMovie();
     Controller.print(req, res);
+  });
+  app.post("/admin/movie/add/", (req, res) => {
+    let AdminMovie = require("../src/controllers/AdminMovie.js");
+    let Controller = new AdminMovie();
+    Controller.process(req, res);
+  });
+  app.get("/admin/movie/list/", (req, res) => {
+    let AdminMovie = require("../src/controllers/AdminMovie.js");
+    let Controller = new AdminMovie();
+    Controller.printList(req, res);
   });
 };

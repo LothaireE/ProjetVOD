@@ -29,6 +29,27 @@ app.use(
     cookie: { maxAge: 3600000 },
   })
 );
+//--------------------------------------------------------------------
+//      fake user en dur pour maintenir la session connectés
+//                      à supprimer
+//--------------------------------------------------------------------
+// if (process.env.APP_ENV === "dev") {
+//   app.use((req, res, next) => {
+//     req.session.user = {
+//       connected: true,
+//       id: "12121212",
+//       email: "j.doe@yopmail.com",
+//       isAdmin: true,
+//       lastname: "Doe",
+//       firstname: "John",
+//     };
+//     next();
+//   });
+// }
+//--------------------------------------------------------------------
+//
+//--------------------------------------------------------------------
+
 // permet de renvoyer les sessions à la vue
 app.use((req, res, next) => {
   res.locals.session = req.session;

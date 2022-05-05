@@ -1,4 +1,6 @@
 const UserModel = require("../models/User.js");
+const jwt = require("jsonwebtoken");
+const Cookies = require("cookies");
 
 module.exports = class Authentification {
   print(request, response) {
@@ -16,6 +18,19 @@ module.exports = class Authentification {
         });
       } else {
         // @todo on enregistre les infos en session
+        let accessToken = jwt.sign(
+          {
+            lastname: result.lastname,
+            firstname: result.firstname,
+            isAdmin: result.isAdmin,
+          },
+          process.env.SECRET_JWT,
+          { expiresIn: 604800 }
+        );
+        new Cookies(request, response).set("access_token", accessToken, {
+          httpOnly: true,
+          secure: false,
+        });
         request.session.user = {
           connected: true,
           id: result._id,
@@ -36,6 +51,7 @@ module.exports = class Authentification {
     // message dans flashbag
     request.flash("notify", "Vous êtes maintenant déconnecté.");
     // redirection vers l'accueil
+    new Cookies(request, response).set("access_token", "", 0);
     response.redirect("/");
   }
 };
